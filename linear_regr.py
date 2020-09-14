@@ -21,7 +21,7 @@ print(df.describe())
 #selecting features for Linear regression and spliting it in test(30%) and train data set
 X= df[['ENGINESIZE']]
 y=df[['CO2EMISSIONS']]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=3)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=3)
 
 #applying Linear regression between enginesize and CO2 emission
 regr=linear_model.LinearRegression()
@@ -45,4 +45,9 @@ test_y_hat = regr.predict(X_test)
 print("Mean absolute error: %.2f" % np.mean(np.absolute(test_y_hat - y_test)))
 print("Residual sum of squares (MSE): %.2f" % np.mean((test_y_hat - y_test) ** 2))
 print("R2-score: %.2f" % r2_score(test_y_hat , y_test) )
+
+# Explained variance score: 1 is perfect prediction
+print('Variance score: %.2f' % regr.score(X_test, y_test))
+
+
 
